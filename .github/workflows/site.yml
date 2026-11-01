@@ -1,0 +1,84 @@
+name: Site
+
+# Deploys the site to GitHub Pages on every push to main.
+# Run it by hand to change an app's link:
+#   gh workflow run site.yml -R Zwin-ux/westsidewebstudio -f app=masri -f status=testflight -f url=https://testflight.apple.com/join/XXXX
+#   gh workflow run site.yml -R Zwin-ux/westsidewebstudio -f app=nursebook -f status=appstore -f url=https://apps.apple.com/us/app/nursebook-study/id6823707544
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "App id from apps.json (nursebook, masri). Leave empty to just redeploy."
+        required: false
+        default: ""
+      status:
+        description: "testing, testflight or appstore"
+        type: choice
+        options: [testflight, appstore, testing]
+        default: testflight
+      url:
+        description: "TestFlight join link or App Store link"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Update app link
+        if: ${{ inputs.app != '' }}
+        env:
+          APP: ${{ inputs.app }}
+          STATUS: ${{ inputs.status }}
+          URL: ${{ inputs.url }}
+        run: |
+          python scripts/build.py --set "$APP" "$STATUS" "$URL"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A apps.json index.html nursebook masri
+          git commit -m "$APP: $STATUS" || echo "nothing changed"
+          git push
+
+      - name: Check store links respond
+        run: |
+          for url in $(python -c "import json; [print(a[k]) for a in json.load(open('apps.json'))['apps'] for k in ('testflight','appStore') if a.get(k)]"); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 20 "$url" || true)
+            if [ "$code" != "200" ]; then echo "::warning::$url returned $code"; else echo "ok $url"; fi
+          done
+
+      - name: Build
+        run: python scripts/build.py --out _site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

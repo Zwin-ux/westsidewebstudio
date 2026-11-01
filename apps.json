@@ -1,0 +1,24 @@
+{
+  "apps": [
+    {
+      "id": "nursebook",
+      "name": "Nursebook",
+      "icon": "assets/img/nursebook-icon-256.png",
+      "page": "nursebook/",
+      "site": "https://nursebook.westsidewebstudio.com/",
+      "status": "testflight",
+      "testflight": "https://testflight.apple.com/join/bQHftDA7",
+      "appStore": ""
+    },
+    {
+      "id": "masri",
+      "name": "Masri",
+      "icon": "assets/img/masri-icon-256.png",
+      "page": "masri/",
+      "site": "",
+      "status": "testing",
+      "testflight": "",
+      "appStore": ""
+    }
+  ]
+}

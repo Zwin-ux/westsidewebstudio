@@ -546,3 +546,46 @@ p { margin: 0; max-width: 62ch; }
   .snaps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stamps { gap: 0.75rem; }
 }
+
+/* ---------- Motion ---------- */
+/* Everything rests visible; the motion only plays on top of it. */
+
+.city .ch { display: inline-block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .city .ch { animation: letter-pop 0.6s cubic-bezier(.3, 1.6, .5, 1) backwards; animation-delay: calc(var(--i) * 45ms); }
+  .city:hover .ch { animation: letter-wave 0.7s ease-in-out; animation-delay: calc(var(--i) * 40ms); }
+
+  .snap { animation: snap-drop 0.75s cubic-bezier(.2, .9, .3, 1.25) backwards; animation-delay: calc(var(--i) * 90ms + 250ms);
+          transition: transform 0.3s cubic-bezier(.2, .7, .2, 1), box-shadow 0.3s; }
+  .snap:hover { transform: rotate(0deg) scale(1.05); z-index: 5; box-shadow: 0 2px 4px rgba(31, 21, 11, 0.2), 0 22px 40px -14px rgba(31, 21, 11, 0.55); }
+
+  .app-stamp { animation: stamp-stick 0.65s cubic-bezier(.3, 1.7, .5, 1) backwards; animation-delay: calc(var(--i) * 160ms + 900ms); }
+  .app-stamp .stamp-paper { animation: stamp-jiggle 7s ease-in-out infinite; animation-delay: calc(var(--i) * 1.4s + 3s); }
+  .app-stamp:hover .stamp-paper, .app-stamp:focus-visible .stamp-paper { animation: stamp-wiggle 0.5s ease-in-out; }
+
+  .postmark { animation: postmark-thud 0.5s cubic-bezier(.3, 1.5, .5, 1) backwards 1.5s; }
+}
+
+.snap:nth-child(1) { --i: 0; } .snap:nth-child(2) { --i: 1; } .snap:nth-child(3) { --i: 2; }
+.snap:nth-child(4) { --i: 3; } .snap:nth-child(5) { --i: 4; } .snap:nth-child(6) { --i: 5; }
+.app-stamp:nth-child(1) { --i: 0; } .app-stamp:nth-child(2) { --i: 1; } .app-stamp:nth-child(3) { --i: 2; }
+
+@keyframes letter-pop { from { transform: translateY(-0.35em) rotate(-8deg) scale(1.15); } }
+@keyframes letter-wave { 40% { transform: translateY(-0.12em) rotate(-3deg); } }
+@keyframes snap-drop { from { transform: translateY(-36px) rotate(calc(var(--tilt) * -4)); } }
+@keyframes stamp-stick { from { transform: scale(1.4) rotate(calc(var(--tilt) - 14deg)); } }
+@keyframes stamp-jiggle {
+  0%, 86%, 100% { transform: rotate(0deg); }
+  89% { transform: rotate(-5deg); }
+  92% { transform: rotate(4deg); }
+  95% { transform: rotate(-2deg); }
+  98% { transform: rotate(1deg); }
+}
+@keyframes stamp-wiggle {
+  25% { transform: rotate(-6deg) scale(1.03); }
+  50% { transform: rotate(5deg) scale(1.03); }
+  75% { transform: rotate(-2deg); }
+}
+@keyframes postmark-thud { from { transform: rotate(-20deg) scale(1.8); } }
+.home .sheet { overflow: clip; }
