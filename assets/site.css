@@ -404,16 +404,27 @@ p { margin: 0; max-width: 62ch; }
   .btn:hover { transform: translateY(-1px); }
 }
 
-/* ---------- Postcard front (home) ---------- */
+/* ---------- Home: one postcard ---------- */
+/* Photo side on the left, stamp side on the right, like a real card. */
 
-.card-front { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 4.5rem); }
-.card-front .wrap { position: relative; }
+.home { border-top: 0; background: var(--night) url("img/la/skyline.jpg") center / cover fixed; }
+.home .sheet {
+  max-width: 76rem;
+  margin: clamp(0px, 3vw, 40px) auto;
+  background: var(--paper);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-image: repeating-linear-gradient(90deg, var(--accent) 0 22px, var(--paper) 22px 28px, var(--airmail-blue) 28px 50px, var(--paper) 50px 56px) 10;
+}
+
+.card { padding-block: clamp(1rem, 3vw, 2rem) clamp(2rem, 5vw, 3.5rem); }
 
 .greeting {
   text-align: center;
   font-family: var(--script);
   font-style: italic;
-  font-size: clamp(1.1rem, 0.9rem + 1vw, 1.6rem);
+  font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.5rem);
   color: var(--accent);
   letter-spacing: 0.06em;
   margin: 0;
@@ -422,97 +433,116 @@ p { margin: 0; max-width: 62ch; }
   text-align: center;
   font-family: var(--poster);
   font-weight: 400;
-  font-size: clamp(3.6rem, 1rem + 12vw, 10rem);
+  font-size: clamp(3.4rem, 1rem + 10vw, 8.5rem);
   line-height: 0.9;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--gold);
-  -webkit-text-stroke: clamp(2px, 0.35vw, 4px) var(--ink);
+  -webkit-text-stroke: clamp(2px, 0.3vw, 4px) var(--ink);
   paint-order: stroke fill;
-  text-shadow: 0.06em 0.06em 0 rgba(31, 21, 11, 0.85);
-  margin: 0.1em 0 0;
+  text-shadow: 0.05em 0.05em 0 rgba(31, 21, 11, 0.85);
+  margin: 0.08em 0 0;
 }
-.city-rule { border: 0; border-top: 3px solid var(--ink); margin: 1.25rem 0 0; }
 
-.stamp {
-  position: absolute;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  border: 2px solid currentColor;
-  padding: 0.3rem 0.7rem;
-  opacity: 0.8;
-  pointer-events: none;
-}
-.stamp-studio { color: var(--accent); top: 0.5rem; right: var(--gutter-r); transform: rotate(-9deg); }
-.stamp-air { color: var(--airmail-blue); top: 0.75rem; left: var(--gutter-l); border-style: dashed; transform: rotate(4deg); }
-
-.snaps {
-  list-style: none;
-  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
-  padding: 0;
+.card-body {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  border-top: 3px solid var(--ink);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0;
-  align-items: start;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+}
+
+/* photo side */
+.snaps {
+  list-style: none; margin: 0; padding: 0 clamp(1.25rem, 3vw, 2.5rem) 0 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem 0.9rem;
+  align-content: start;
 }
 .snap {
   background: #fffdf6;
-  padding: 0.55rem 0.55rem 0;
-  box-shadow: 0 1px 2px rgba(31, 21, 11, 0.25), 0 12px 26px -10px rgba(31, 21, 11, 0.45);
+  padding: 0.45rem 0.45rem 0;
+  box-shadow: 0 1px 2px rgba(31, 21, 11, 0.22), 0 10px 22px -12px rgba(31, 21, 11, 0.5);
   transform: rotate(var(--tilt, 0deg));
-  position: relative;
 }
-.snap img, .snap video {
-  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--paper-2);
-}
+.snap figure { margin: 0; }
+.snap img, .snap video { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--paper-2); }
 .snap figcaption {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
-  padding: 0.55rem 0 0.65rem;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); text-align: center; padding: 0.45rem 0 0.5rem;
 }
-.snap:nth-child(1) { grid-column: 1 / span 3; --tilt: -2deg; z-index: 2; }
-.snap:nth-child(2) { grid-column: 4 / span 2; --tilt: 3deg; margin-top: 1.5rem; z-index: 1; }
-.snap:nth-child(3) { grid-column: 6 / span 1; --tilt: -4deg; margin-top: 0.5rem; margin-left: -1.5rem; z-index: 3; }
-.snap:nth-child(4) { grid-column: 1 / span 2; --tilt: 2.5deg; margin-top: -2.5rem; margin-left: 1rem; z-index: 3; }
-.snap:nth-child(5) { grid-column: 3 / span 2; --tilt: -1.5deg; margin-top: -1rem; z-index: 4; }
-.snap:nth-child(6) { grid-column: 5 / span 2; --tilt: 3.5deg; margin-top: -3rem; z-index: 2; }
-.snap:nth-child(3) img { aspect-ratio: 3 / 4; }
-
-@media (max-width: 760px) {
-  .snaps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem 0.6rem; }
-  .snap:nth-child(n) { grid-column: auto; margin: 0; }
-  .snap:nth-child(1), .snap:nth-child(6) { grid-column: 1 / -1; }
-  .snap:nth-child(3) img { aspect-ratio: 4 / 3; }
-  .stamp-air { display: none; }
-  .stamp-studio { position: static; display: inline-block; margin: 0 auto 0.75rem; }
-  .card-front .wrap { text-align: center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .snap video { display: none; }
-}
+.snap:nth-child(1) { --tilt: -2deg; }
+.snap:nth-child(2) { --tilt: 1.5deg; }
+.snap:nth-child(3) { --tilt: -1deg; }
+.snap:nth-child(4) { --tilt: 2deg; }
+.snap:nth-child(5) { --tilt: -1.5deg; }
+.snap:nth-child(6) { --tilt: 1deg; }
 .snap video + img { display: none; }
 @media (prefers-reduced-motion: reduce) {
+  .snap video { display: none; }
   .snap video + img { display: block; }
 }
 
-/* the postcard is the page on home: photo behind, card stock in front */
-.home { background: var(--night) url("img/la/skyline.jpg") center / cover fixed; }
-.home .sheet {
-  max-width: 76rem; margin: clamp(0px, 2vw, 24px) auto;
-  background: var(--paper);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+/* stamp side */
+.back {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(1.25rem, 3vw, 2.5rem);
+  display: grid; gap: 2rem; align-content: start;
 }
-.home { border-top: 0; }
-.home .sheet {
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-image: repeating-linear-gradient(90deg, var(--accent) 0 22px, var(--paper) 22px 28px, var(--airmail-blue) 28px 50px, var(--paper) 50px 56px) 10;
+.stamps { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1.25rem; }
+
+.app-stamp {
+  display: block; text-decoration: none; color: var(--ink);
+  filter: drop-shadow(0 6px 10px rgba(31, 21, 11, 0.28));
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.25s cubic-bezier(.2,.7,.2,1);
+}
+.app-stamp:nth-child(1) { --tilt: -3deg; }
+.app-stamp:nth-child(2) { --tilt: 2.5deg; }
+.app-stamp:hover, .app-stamp:focus-visible { transform: rotate(0deg) translateY(-3px); }
+.app-stamp:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+/* perforated edge: holes on a 12px grid, only in the 6px rim */
+.stamp-paper {
+  width: 168px; height: 204px; padding: 6px;
+  background: #fffdf6;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, radial-gradient(circle, #0000 3.5px, #000 4px) -6px -6px / 12px 12px;
+          mask: linear-gradient(#000 0 0) content-box, radial-gradient(circle, #0000 3.5px, #000 4px) -6px -6px / 12px 12px;
+}
+.stamp-face {
+  height: 100%;
+  border: 1px solid var(--rule);
+  display: grid; justify-items: center; align-content: center; gap: 0.6rem;
+  position: relative;
+}
+.stamp-face img { width: 84px; height: 84px; border-radius: 19px; }
+.stamp-name { font-family: var(--poster); font-size: 1.15rem; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; }
+.stamp-note { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.stamp-corner { position: absolute; top: 6px; right: 8px; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--accent); }
+
+.address { display: grid; }
+.address span {
+  font-family: var(--script); font-style: italic; font-size: 1.05rem;
+  border-bottom: 1px solid var(--rule); padding: 0.5rem 0 0.35rem;
+  overflow-wrap: anywhere;
+}
+.address a { text-decoration: none; }
+.address a:hover { text-decoration: underline; }
+
+.postmark {
+  justify-self: start;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--airmail-blue); border: 2px solid currentColor; border-radius: 999px;
+  padding: 0.55rem 0.9rem; transform: rotate(-6deg); opacity: 0.75;
+}
+
+@media (max-width: 860px) {
+  .card-body { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .snaps { padding-right: 0; }
+  .back { border-left: 0; padding-left: 0; order: -1; }
+  .address, .postmark { display: none; }
+  .stamps { justify-content: center; }
+}
+@media (max-width: 520px) {
+  .snaps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stamps { gap: 0.75rem; }
 }

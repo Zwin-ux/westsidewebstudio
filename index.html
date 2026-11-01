@@ -32,89 +32,44 @@
 </header>
 
 <main id="main">
-  <section class="card-front" aria-label="Greetings from Los Angeles">
-    <div class="wrap">
-      <span class="stamp stamp-air" aria-hidden="true">Air mail</span>
-      <span class="stamp stamp-studio" aria-hidden="true">Westside Web Studio</span>
-      <p class="greeting">Greetings from</p>
-      <h1 class="city">Los Angeles</h1>
-      <hr class="city-rule">
+  <section class="card wrap" aria-label="Westside Web Studio">
+    <p class="greeting">Greetings from</p>
+    <h1 class="city">Los Angeles</h1>
+    <div class="card-body">
       <ul class="snaps">
-        <li class="snap"><figure style="margin:0">
-          <img src="assets/img/la/skyline.jpg" alt="Downtown">
-          <figcaption>Downtown</figcaption></figure></li>
-        <li class="snap"><figure style="margin:0">
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/silver-lake.jpg" aria-label="Silver Lake"><source src="assets/img/la/silver-lake.mp4" type="video/mp4"></video>
-          <img src="assets/img/la/silver-lake.jpg" alt="Silver Lake" loading="lazy">
-          <figcaption>Silver Lake</figcaption></figure></li>
-        <li class="snap"><figure style="margin:0">
-          <img src="assets/img/la/palms.jpg" alt="Palm trees" loading="lazy">
-          <figcaption>Palm trees</figcaption></figure></li>
-        <li class="snap"><figure style="margin:0">
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/pasadena.jpg" aria-label="Pasadena"><source src="assets/img/la/pasadena.mp4" type="video/mp4"></video>
-          <img src="assets/img/la/pasadena.jpg" alt="Pasadena" loading="lazy">
-          <figcaption>Pasadena</figcaption></figure></li>
-        <li class="snap"><figure style="margin:0">
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/south-bay.jpg" aria-label="South Bay"><source src="assets/img/la/south-bay.mp4" type="video/mp4"></video>
-          <img src="assets/img/la/south-bay.jpg" alt="South Bay" loading="lazy">
-          <figcaption>South Bay</figcaption></figure></li>
-        <li class="snap"><figure style="margin:0">
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/dtla.jpg" aria-label="DTLA"><source src="assets/img/la/dtla.mp4" type="video/mp4"></video>
-          <img src="assets/img/la/dtla.jpg" alt="DTLA" loading="lazy">
-          <figcaption>DTLA</figcaption></figure></li>
+          <li class="snap"><figure><img src="assets/img/la/skyline.jpg" alt="Downtown"><figcaption>Downtown</figcaption></figure></li>
+          <li class="snap"><figure><video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/silver-lake.jpg" aria-label="Silver Lake"><source src="assets/img/la/silver-lake.mp4" type="video/mp4"></video><img src="assets/img/la/silver-lake.jpg" alt="Silver Lake" loading="lazy"><figcaption>Silver Lake</figcaption></figure></li>
+          <li class="snap"><figure><img src="assets/img/la/palms.jpg" alt="Palm trees"><figcaption>Palm trees</figcaption></figure></li>
+          <li class="snap"><figure><video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/pasadena.jpg" aria-label="Pasadena"><source src="assets/img/la/pasadena.mp4" type="video/mp4"></video><img src="assets/img/la/pasadena.jpg" alt="Pasadena" loading="lazy"><figcaption>Pasadena</figcaption></figure></li>
+          <li class="snap"><figure><video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/south-bay.jpg" aria-label="South Bay"><source src="assets/img/la/south-bay.mp4" type="video/mp4"></video><img src="assets/img/la/south-bay.jpg" alt="South Bay" loading="lazy"><figcaption>South Bay</figcaption></figure></li>
+          <li class="snap"><figure><video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/dtla.jpg" aria-label="DTLA"><source src="assets/img/la/dtla.mp4" type="video/mp4"></video><img src="assets/img/la/dtla.jpg" alt="DTLA" loading="lazy"><figcaption>DTLA</figcaption></figure></li>
       </ul>
-    </div>
-  </section>
-
-  <section class="plate plate-nb" aria-labelledby="nb-title">
-    <div class="wrap">
-      <div>
-        <div class="plate-id">
-          <img src="assets/img/nursebook-icon-256.png" width="72" height="72" alt="Nursebook app icon">
-          <span class="label">iPhone &amp; iPad</span>
+      <div class="back">
+        <div class="stamps">
+          <a class="app-stamp" href="https://nursebook.westsidewebstudio.com/">
+            <div class="stamp-paper"><div class="stamp-face">
+              <span class="stamp-corner">iOS</span>
+              <img src="assets/img/nursebook-icon-256.png" width="84" height="84" alt="">
+              <span class="stamp-name">Nursebook</span>
+              <span class="stamp-note">TestFlight beta</span>
+            </div></div>
+          </a>
+          <a class="app-stamp" href="masri/">
+            <div class="stamp-paper"><div class="stamp-face">
+              <span class="stamp-corner">iOS</span>
+              <img src="assets/img/masri-icon-256.png" width="84" height="84" alt="">
+              <span class="stamp-name">Masri</span>
+              <span class="stamp-note">In testing</span>
+            </div></div>
+          </a>
         </div>
-        <h2 id="nb-title">NurseBook Study</h2>
-        <p class="lede">TEAS 7 and HESI A2 practice, plus the Nursing Fundamentals textbook. Works offline.</p>
-        <dl class="spec">
-          <div><dt>Price</dt><dd>Free. Two $14.99 unlocks.</dd></div>
-          <div><dt>Status</dt><dd>TestFlight beta</dd></div>
-        </dl>
-        <div class="actions">
-          <a class="btn" href="https://nursebook.westsidewebstudio.com/">Nursebook site <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="textlink" href="https://testflight.apple.com/join/bQHftDA7">Join the beta</a>
+        <div class="address">
+          <span>Westside Web Studio</span>
+          <span>Los Angeles, California</span>
+          <span><a href="mailto:hello@westsidewebstudio.com">hello@westsidewebstudio.com</a></span>
         </div>
+        <span class="postmark" aria-hidden="true">Los Angeles CA · 2026</span>
       </div>
-      <div class="nb-art">
-        <div class="nb-count">566</div>
-        <p>practice questions</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="plate plate-ms" aria-labelledby="ms-title">
-    <div class="wrap">
-      <div>
-        <div class="plate-id">
-          <img src="assets/img/masri-icon-256.png" width="72" height="72" alt="Masri app icon">
-          <span class="label">iPhone &amp; iPad</span>
-        </div>
-        <h2 id="ms-title">Masri</h2>
-        <p class="lede">Egyptian Arabic for families.</p>
-        <dl class="spec">
-          <div><dt>Price</dt><dd>5 lessons free</dd></div>
-          <div><dt>Status</dt><dd>Private testing</dd></div>
-        </dl>
-        <div class="actions">
-          <a class="btn" href="masri/">About Masri <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </div>
-      </div>
-      <figure class="ms-art" style="margin:0">
-        <div class="ms-phrase" lang="ar-EG" dir="rtl">عايز قهوة، <span style="white-space:nowrap">لو سمحت</span></div>
-        <figcaption>
-          <div class="ms-say">ʿāyez ahwa, law samaḥt</div>
-          <div class="ms-gloss">"I'd like a coffee, please."</div>
-        </figcaption>
-      </figure>
     </div>
   </section>
 </main>
