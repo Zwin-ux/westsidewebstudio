@@ -15,6 +15,7 @@ https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pag
 | `send` | TXT | `v=spf1 include:amazonses.com ~all` | **Leave alone.** Resend sending. |
 | `resend._domainkey` | TXT | `p=MIGf…` (DKIM key) | **Leave alone.** Resend DKIM. |
 | `ops` | CNAME | `dtjrawma.up.railway.app` | Leave alone (the old Hermes admin console). |
+| `nursebook` | CNAME | `zwin-ux.github.io` (to be added for the Nursebook site, repo `Zwin-ux/nursebook-site`) | **Keep.** Add it if it isn't there yet. |
 | `www` | CNAME | `43msm5zv.up.railway.app` | **Change** (step 3). This is the old postcard site. |
 | `@` | A / AAAA | none | **Add** (step 3). |
 
@@ -63,7 +64,7 @@ Notes:
 - The CNAME target has no repository name in it, just `zwin-ux.github.io`.
 - If IONOS says the domain is connected to an IONOS website or parking page, switch its usage to custom DNS records first. Otherwise IONOS may add its own A/AAAA records next to GitHub's.
 - Don't add a wildcard (`*`) record. GitHub warns that it allows subdomain takeover.
-- `nursebook.westsidewebstudio.com` is a separate CNAME, set up from the Nursebook repo's own Pages site. Don't remove it if it's there.
+- Keep the `nursebook` CNAME (`nursebook` → `zwin-ux.github.io`). It serves nursebook.westsidewebstudio.com from the `Zwin-ux/nursebook-site` repo. Verifying the domain in step 1 also protects this subdomain.
 
 ## Step 4. HTTPS
 
