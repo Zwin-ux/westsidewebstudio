@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Westside Web Studio</title>
 <meta name="description" content="A one-person app studio in Los Angeles. Makers of NurseBook Study and Masri.">
-<meta name="theme-color" content="#eef1ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0c1110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#241c13">
 <meta property="og:title" content="Westside Web Studio">
 <meta property="og:description" content="Careful apps for learning hard things. NurseBook Study and Masri, for iPhone and iPad.">
 <meta property="og:type" content="website">
@@ -14,7 +13,8 @@
 <link rel="preload" href="assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="home">
+<div class="sheet">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -32,18 +32,39 @@
 </header>
 
 <main id="main">
-  <section class="hero">
+  <section class="card-front" aria-label="Greetings from Los Angeles">
     <div class="wrap">
-      <h1>Careful apps for learning <em>hard things.</em></h1>
-      <div class="hero-foot">
-        <p>A one-person app studio in Los Angeles.</p>
-      </div>
+      <span class="stamp stamp-air" aria-hidden="true">Air mail</span>
+      <span class="stamp stamp-studio" aria-hidden="true">Westside Web Studio</span>
+      <p class="greeting">Greetings from</p>
+      <h1 class="city">Los Angeles</h1>
+      <hr class="city-rule">
+      <ul class="snaps">
+        <li class="snap"><figure style="margin:0">
+          <img src="assets/img/la/skyline.jpg" alt="Downtown">
+          <figcaption>Downtown</figcaption></figure></li>
+        <li class="snap"><figure style="margin:0">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/silver-lake.jpg" aria-label="Silver Lake"><source src="assets/img/la/silver-lake.mp4" type="video/mp4"></video>
+          <img src="assets/img/la/silver-lake.jpg" alt="Silver Lake" loading="lazy">
+          <figcaption>Silver Lake</figcaption></figure></li>
+        <li class="snap"><figure style="margin:0">
+          <img src="assets/img/la/palms.jpg" alt="Palm trees" loading="lazy">
+          <figcaption>Palm trees</figcaption></figure></li>
+        <li class="snap"><figure style="margin:0">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/pasadena.jpg" aria-label="Pasadena"><source src="assets/img/la/pasadena.mp4" type="video/mp4"></video>
+          <img src="assets/img/la/pasadena.jpg" alt="Pasadena" loading="lazy">
+          <figcaption>Pasadena</figcaption></figure></li>
+        <li class="snap"><figure style="margin:0">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/south-bay.jpg" aria-label="South Bay"><source src="assets/img/la/south-bay.mp4" type="video/mp4"></video>
+          <img src="assets/img/la/south-bay.jpg" alt="South Bay" loading="lazy">
+          <figcaption>South Bay</figcaption></figure></li>
+        <li class="snap"><figure style="margin:0">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/img/la/dtla.jpg" aria-label="DTLA"><source src="assets/img/la/dtla.mp4" type="video/mp4"></video>
+          <img src="assets/img/la/dtla.jpg" alt="DTLA" loading="lazy">
+          <figcaption>DTLA</figcaption></figure></li>
+      </ul>
     </div>
   </section>
-
-  <div class="wrap apps-head">
-    <h2 class="label" id="apps">Apps</h2>
-  </div>
 
   <section class="plate plate-nb" aria-labelledby="nb-title">
     <div class="wrap">
@@ -109,5 +130,6 @@
     </nav>
   </div>
 </footer>
+</div>
 </body>
 </html>

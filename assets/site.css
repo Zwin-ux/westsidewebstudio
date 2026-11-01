@@ -36,29 +36,42 @@
   font-display: swap;
 }
 
+/* Postcard: cream card stock, sepia ink, airmail red and blue, marigold.
+   One look on purpose, in every theme. */
+@font-face {
+  font-family: "Anton";
+  src: url("fonts/anton.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
-  /* Studio: marine-layer paper, ink, one dusk-blue accent */
-  --paper: #eef1ee;
-  --paper-2: #e2e8e4;
-  --ink: #111816;
-  --muted: #55625e;
-  --rule: #c6d0cb;
-  --accent: #2b3dcc;
+  --paper: #f5edd5;
+  --paper-2: #ebdfbf;
+  --ink: #1f150b;
+  --muted: #6b5a45;
+  --rule: #d9caa3;
+  --accent: #c0392b;
+  --airmail-blue: #1a3a6b;
+  --gold: #e8b400;
+  --night: #241c13;
 
   /* Nursebook plate */
-  --nb-bg: #ffffff;
+  --nb-bg: #fffdf6;
   --nb-fg: #0a3439;
   --nb-muted: #4b6a6d;
   --nb-accent: #0e6f78;
-  --nb-rule: #d5e4e5;
+  --nb-rule: #dfe7e1;
 
-  /* Masri plate (one look in both themes, from the app icon) */
+  /* Masri plate, from the app icon */
   --ms-bg: #10424d;
   --ms-fg: #f6ecd8;
   --ms-muted: #b9c7c2;
   --ms-accent: #ddb572;
   --ms-rule: #2b5f69;
 
+  --poster: "Anton", Impact, "Arial Narrow Bold", sans-serif;
+  --script: Georgia, "Times New Roman", serif;
   --display: "Bricolage Grotesque", "Avenir Next Condensed", "Arial Narrow", system-ui, sans-serif;
   --body: "Instrument Sans", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
@@ -77,30 +90,14 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #0c1110;
-    --paper-2: #141b19;
-    --ink: #e5ebe8;
-    --muted: #93a19c;
-    --rule: #26312e;
-    --accent: #95a2ff;
-
-    --nb-bg: #0a2326;
-    --nb-fg: #e2f0f0;
-    --nb-muted: #9dbbbd;
-    --nb-accent: #5fc4cc;
-    --nb-rule: #1c3d41;
-    color-scheme: dark;
-  }
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
+  border-top: 10px solid transparent;
+  border-image: repeating-linear-gradient(90deg, var(--accent) 0 22px, var(--paper) 22px 28px, var(--airmail-blue) 28px 50px, var(--paper) 50px 56px) 10;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--body);
@@ -405,4 +402,117 @@ p { margin: 0; max-width: 62ch; }
   .plate:hover .plate-id img { transform: rotate(-4deg) scale(1.04); }
   .btn { transition: transform 0.15s ease; }
   .btn:hover { transform: translateY(-1px); }
+}
+
+/* ---------- Postcard front (home) ---------- */
+
+.card-front { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 4.5rem); }
+.card-front .wrap { position: relative; }
+
+.greeting {
+  text-align: center;
+  font-family: var(--script);
+  font-style: italic;
+  font-size: clamp(1.1rem, 0.9rem + 1vw, 1.6rem);
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+.city {
+  text-align: center;
+  font-family: var(--poster);
+  font-weight: 400;
+  font-size: clamp(3.6rem, 1rem + 12vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--gold);
+  -webkit-text-stroke: clamp(2px, 0.35vw, 4px) var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 0.06em 0.06em 0 rgba(31, 21, 11, 0.85);
+  margin: 0.1em 0 0;
+}
+.city-rule { border: 0; border-top: 3px solid var(--ink); margin: 1.25rem 0 0; }
+
+.stamp {
+  position: absolute;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  padding: 0.3rem 0.7rem;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.stamp-studio { color: var(--accent); top: 0.5rem; right: var(--gutter-r); transform: rotate(-9deg); }
+.stamp-air { color: var(--airmail-blue); top: 0.75rem; left: var(--gutter-l); border-style: dashed; transform: rotate(4deg); }
+
+.snaps {
+  list-style: none;
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0;
+  align-items: start;
+}
+.snap {
+  background: #fffdf6;
+  padding: 0.55rem 0.55rem 0;
+  box-shadow: 0 1px 2px rgba(31, 21, 11, 0.25), 0 12px 26px -10px rgba(31, 21, 11, 0.45);
+  transform: rotate(var(--tilt, 0deg));
+  position: relative;
+}
+.snap img, .snap video {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--paper-2);
+}
+.snap figcaption {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 0.55rem 0 0.65rem;
+}
+.snap:nth-child(1) { grid-column: 1 / span 3; --tilt: -2deg; z-index: 2; }
+.snap:nth-child(2) { grid-column: 4 / span 2; --tilt: 3deg; margin-top: 1.5rem; z-index: 1; }
+.snap:nth-child(3) { grid-column: 6 / span 1; --tilt: -4deg; margin-top: 0.5rem; margin-left: -1.5rem; z-index: 3; }
+.snap:nth-child(4) { grid-column: 1 / span 2; --tilt: 2.5deg; margin-top: -2.5rem; margin-left: 1rem; z-index: 3; }
+.snap:nth-child(5) { grid-column: 3 / span 2; --tilt: -1.5deg; margin-top: -1rem; z-index: 4; }
+.snap:nth-child(6) { grid-column: 5 / span 2; --tilt: 3.5deg; margin-top: -3rem; z-index: 2; }
+.snap:nth-child(3) img { aspect-ratio: 3 / 4; }
+
+@media (max-width: 760px) {
+  .snaps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem 0.6rem; }
+  .snap:nth-child(n) { grid-column: auto; margin: 0; }
+  .snap:nth-child(1), .snap:nth-child(6) { grid-column: 1 / -1; }
+  .snap:nth-child(3) img { aspect-ratio: 4 / 3; }
+  .stamp-air { display: none; }
+  .stamp-studio { position: static; display: inline-block; margin: 0 auto 0.75rem; }
+  .card-front .wrap { text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snap video { display: none; }
+}
+.snap video + img { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .snap video + img { display: block; }
+}
+
+/* the postcard is the page on home: photo behind, card stock in front */
+.home { background: var(--night) url("img/la/skyline.jpg") center / cover fixed; }
+.home .sheet {
+  max-width: 76rem; margin: clamp(0px, 2vw, 24px) auto;
+  background: var(--paper);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+.home { border-top: 0; }
+.home .sheet {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-image: repeating-linear-gradient(90deg, var(--accent) 0 22px, var(--paper) 22px 28px, var(--airmail-blue) 28px 50px, var(--paper) 50px 56px) 10;
 }

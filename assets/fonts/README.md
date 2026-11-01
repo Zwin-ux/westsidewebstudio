@@ -5,5 +5,6 @@ Self-hosted so the site makes no third-party requests. All three families are li
 - Bricolage Grotesque (Mathieu Triay), latin subset, variable
 - Instrument Sans (Instrument), latin subset, variable, roman and italic
 - IBM Plex Mono (IBM), latin subset, 400 and 500
+- Anton (Vernon Adams), latin subset
 
 Files were downloaded from Google Fonts on 31 October 2026.
